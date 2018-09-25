@@ -195,4 +195,15 @@ class CdekClient
         $this->password = $password;
         return $this;
     }
+
+    public function isDebugMode(): bool
+    {
+        return $this->isDebugMode;
+    }
+
+    public function setIsDebugMode(bool $isDebugMode): CdekClient
+    {
+        $this->isDebugMode = $isDebugMode;
+        return $this;
+    }
 }
