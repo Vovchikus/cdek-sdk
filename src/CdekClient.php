@@ -72,10 +72,8 @@ class CdekClient
 
     private $isDebugMode;
 
-    public function __construct(string $account, string $password, bool $isDebugMode, array $requestOptions = [])
+    public function __construct(bool $isDebugMode, array $requestOptions = [])
     {
-        $this->account = $account;
-        $this->password = $password;
         $this->isDebugMode = $isDebugMode;
 
         $this->http = new GuzzleClient($requestOptions);
@@ -90,7 +88,7 @@ class CdekClient
         if ($request instanceof ShouldAuthorize) {
             $date = new \DateTimeImmutable();
 
-            $request->date($date)->credentials($this->account, $this->getSecure($date));
+            $request->date($date)->credentials($this->getAccount(), $this->getSecure($date));
         }
 
         $response = $this->http->request(
@@ -130,7 +128,7 @@ class CdekClient
 
     private function getSecure(\DateTimeInterface $date): string
     {
-        return md5($date->format('Y-m-d')."&{$this->password}");
+        return md5($date->format('Y-m-d')."&{$this->getPassword()}");
     }
 
     private function isTextResponse(ResponseInterface $response): bool
@@ -174,5 +172,27 @@ class CdekClient
         }
 
         return [];
+    }
+
+    public function getAccount(): string
+    {
+        return $this->account;
+    }
+
+    public function setAccount(string $account): CdekClient
+    {
+        $this->account = $account;
+        return $this;
+    }
+
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): CdekClient
+    {
+        $this->password = $password;
+        return $this;
     }
 }
