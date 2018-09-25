@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Appwilio\CdekSDK;
 
+use Appwilio\CdekSDK\Common\CityItem;
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\Handler\HandlerRegistry;
@@ -29,6 +30,7 @@ use Appwilio\CdekSDK\Serialization\NullableDateTimeHandler;
  * Class CdekClient
  *
  * @method Responses\DeleteResponse       sendDeleteRequest(Requests\DeleteRequest $request)
+ * @method CityItem[]     sendCityListRequest(Requests\CityListRequest $request)
  * @method Responses\PvzListResponse      sendPvzListRequest(Requests\PvzListRequest $request)
  * @method Responses\DeliveryResponse     sendDeliveryRequest(Requests\DeliveryRequest $request)
  * @method Responses\InfoReportResponse   sendInfoReportRequest(Requests\InfoReportRequest $request)
@@ -52,6 +54,7 @@ class CdekClient
         'json' => [
             Requests\CalculationRequest::class           => Responses\CalculationResponse::class,
             Requests\CalculationAuthorizedRequest::class => Responses\CalculationResponse::class,
+            Requests\CityListRequest::class => 'array<Appwilio\CdekSDK\Common\CityItem>', //todo
         ],
     ];
 
