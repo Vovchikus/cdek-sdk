@@ -70,12 +70,15 @@ class CdekClient
     /** @var Serializer */
     private $serializer;
 
-    public function __construct(string $account, string $password)
+    private $isDebugMode;
+
+    public function __construct(string $account, string $password, bool $isDebugMode, array $requestOptions = [])
     {
         $this->account = $account;
         $this->password = $password;
+        $this->isDebugMode = $isDebugMode;
 
-        $this->http = new GuzzleClient();
+        $this->http = new GuzzleClient($requestOptions);
 
         $this->serializer = SerializerBuilder::create()->configureHandlers(function (HandlerRegistry $registry) {
             $registry->registerSubscribingHandler(new NullableDateTimeHandler());
