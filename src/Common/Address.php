@@ -88,4 +88,34 @@ class Address
     {
         return $this->Street;
     }
+
+    public function setStreet(string $Street): Address
+    {
+        $this->Street = $Street;
+        return $this;
+    }
+
+    public function setHouse(string $House): Address
+    {
+        $this->House = $House;
+        return $this;
+    }
+
+    public function setFlat(string $Flat): Address
+    {
+        $this->Flat = $Flat;
+        return $this;
+    }
+
+    public function setPvzCode(string $PvzCode): Address
+    {
+        $this->PvzCode = $PvzCode;
+        return $this;
+    }
+
+    public function setSenderName(string $SenderName): Address
+    {
+        $this->SenderName = $SenderName;
+        return $this;
+    }
 }

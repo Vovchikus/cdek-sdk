@@ -121,4 +121,46 @@ class Item
     {
         return $this->DelivAmount;
     }
+
+    public function setWareKey(string $WareKey): Item
+    {
+        $this->WareKey = $WareKey;
+        return $this;
+    }
+
+    public function setCost(float $Cost): Item
+    {
+        $this->Cost = $Cost;
+        return $this;
+    }
+
+    public function setPayment(float $Payment): Item
+    {
+        $this->Payment = $Payment;
+        return $this;
+    }
+
+    public function setWeight(int $Weight): Item
+    {
+        $this->Weight = $Weight;
+        return $this;
+    }
+
+    public function setAmount(int $Amount): Item
+    {
+        $this->Amount = $Amount;
+        return $this;
+    }
+
+    public function setComment(string $Comment): Item
+    {
+        $this->Comment = $Comment;
+        return $this;
+    }
+
+    public function setDelivAmount(int $DelivAmount): Item
+    {
+        $this->DelivAmount = $DelivAmount;
+        return $this;
+    }
 }

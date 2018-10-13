@@ -650,4 +650,326 @@ class Order
     {
         return (string) $this->Msg;
     }
+
+    public function getAddedServices()
+    {
+        return $this->addedServices;
+    }
+
+    public function setAddedServices($addedServices)
+    {
+        $this->addedServices = $addedServices;
+        return $this;
+    }
+
+    public function getSendCity(): City
+    {
+        return $this->SendCity;
+    }
+
+    public function setSendCity(City $SendCity): Order
+    {
+        $this->SendCity = $SendCity;
+        return $this;
+    }
+
+    public function getSendCityName(): string
+    {
+        return $this->SendCityName;
+    }
+
+    public function setSendCityName(string $SendCityName): Order
+    {
+        $this->SendCityName = $SendCityName;
+        return $this;
+    }
+
+    public function getRecCity(): City
+    {
+        return $this->RecCity;
+    }
+
+    public function setRecCity(City $RecCity): Order
+    {
+        $this->RecCity = $RecCity;
+        return $this;
+    }
+
+    public function getRecCityName(): string
+    {
+        return $this->RecCityName;
+    }
+
+    public function setRecCityName(string $RecCityName): Order
+    {
+        $this->RecCityName = $RecCityName;
+        return $this;
+    }
+
+    public function getMsg(): string
+    {
+        return $this->Msg;
+    }
+
+    public function setMsg(string $Msg): Order
+    {
+        $this->Msg = $Msg;
+        return $this;
+    }
+
+    public function getSellerAddress(): string
+    {
+        return $this->SellerAddress;
+    }
+
+    public function setSellerAddress(string $SellerAddress): Order
+    {
+        $this->SellerAddress = $SellerAddress;
+        return $this;
+    }
+
+    public function getShipperName(): string
+    {
+        return $this->ShipperName;
+    }
+
+    public function setShipperName(string $ShipperName): Order
+    {
+        $this->ShipperName = $ShipperName;
+        return $this;
+    }
+
+    public function getShipperAddress(): string
+    {
+        return $this->ShipperAddress;
+    }
+
+    public function setShipperAddress(string $ShipperAddress): Order
+    {
+        $this->ShipperAddress = $ShipperAddress;
+        return $this;
+    }
+
+    public function getCall(): Call
+    {
+        return $this->Call;
+    }
+
+    public function setCall(Call $Call): Order
+    {
+        $this->Call = $Call;
+        return $this;
+    }
+
+    public function getReturnOrder(): Order
+    {
+        return $this->ReturnOrder;
+    }
+
+    public function setReturnOrder(Order $ReturnOrder): Order
+    {
+        $this->ReturnOrder = $ReturnOrder;
+        return $this;
+    }
+
+    public function getActNumber(): int
+    {
+        return $this->ActNumber;
+    }
+
+    public function setActNumber(int $ActNumber): Order
+    {
+        $this->ActNumber = $ActNumber;
+        return $this;
+    }
+
+    public function getDeliveryDate(): ?\DateTimeImmutable
+    {
+        return $this->DeliveryDate;
+    }
+
+    public function setDeliveryDate(?\DateTimeImmutable $DeliveryDate): Order
+    {
+        $this->DeliveryDate = $DeliveryDate;
+        return $this;
+    }
+
+    public function getReturnDispatchNumber(): int
+    {
+        return $this->ReturnDispatchNumber;
+    }
+
+    public function setReturnDispatchNumber(int $ReturnDispatchNumber): Order
+    {
+        $this->ReturnDispatchNumber = $ReturnDispatchNumber;
+        return $this;
+    }
+
+    public function setNumber(string $Number): Order
+    {
+        $this->Number = $Number;
+        return $this;
+    }
+
+    public function setTariffTypeCode(int $TariffTypeCode): Order
+    {
+        $this->TariffTypeCode = $TariffTypeCode;
+        return $this;
+    }
+
+    public function setRecipientName(string $RecipientName): Order
+    {
+        $this->RecipientName = $RecipientName;
+        return $this;
+    }
+
+    public function setDate(\DateTimeInterface $Date): Order
+    {
+        $this->Date = $Date;
+        return $this;
+    }
+
+    public function setDispatchNumber(string $DispatchNumber): Order
+    {
+        $this->DispatchNumber = $DispatchNumber;
+        return $this;
+    }
+
+    public function setRecipientEmail(string $RecipientEmail): Order
+    {
+        $this->RecipientEmail = $RecipientEmail;
+        return $this;
+    }
+
+    public function setRecipientCurrency(string $RecipientCurrency): Order
+    {
+        $this->RecipientCurrency = $RecipientCurrency;
+        return $this;
+    }
+
+    public function setPhone(string $Phone): Order
+    {
+        $this->Phone = $Phone;
+        return $this;
+    }
+
+    public function setDeliveryRecipientCost(float $DeliveryRecipientCost): Order
+    {
+        $this->DeliveryRecipientCost = $DeliveryRecipientCost;
+        return $this;
+    }
+
+    public function setItemsCurrency(string $ItemsCurrency): Order
+    {
+        $this->ItemsCurrency = $ItemsCurrency;
+        return $this;
+    }
+
+    public function setComment(string $Comment): Order
+    {
+        $this->Comment = $Comment;
+        return $this;
+    }
+
+    public function setStatus(?Status $Status): Order
+    {
+        $this->Status = $Status;
+        return $this;
+    }
+
+    public function setReason(Reason $Reason): Order
+    {
+        $this->Reason = $Reason;
+        return $this;
+    }
+
+    public function setDelayReason(Reason $DelayReason): Order
+    {
+        $this->DelayReason = $DelayReason;
+        return $this;
+    }
+
+    public function setAttempts($attempts)
+    {
+        $this->attempts = $attempts;
+        return $this;
+    }
+
+    public function setAdditionalServices($additionalServices)
+    {
+        $this->additionalServices = $additionalServices;
+        return $this;
+    }
+
+    public function setScheduleAttempts($scheduleAttempts)
+    {
+        $this->scheduleAttempts = $scheduleAttempts;
+        return $this;
+    }
+
+    public function setPackages($packages)
+    {
+        $this->packages = $packages;
+        return $this;
+    }
+
+    public function setCourierCalls($courierCalls)
+    {
+        $this->courierCalls = $courierCalls;
+        return $this;
+    }
+
+    public function setWeight(float $Weight): Order
+    {
+        $this->Weight = $Weight;
+        return $this;
+    }
+
+    public function setDeliverySum(float $DeliverySum): Order
+    {
+        $this->DeliverySum = $DeliverySum;
+        return $this;
+    }
+
+    public function setDateLastChange(\DateTimeImmutable $DateLastChange): Order
+    {
+        $this->DateLastChange = $DateLastChange;
+        return $this;
+    }
+
+    public function setCashOnDeliv(float $CashOnDeliv): Order
+    {
+        $this->CashOnDeliv = $CashOnDeliv;
+        return $this;
+    }
+
+    public function setCashOnDelivFac(float $CashOnDelivFac): Order
+    {
+        $this->CashOnDelivFac = $CashOnDelivFac;
+        return $this;
+    }
+
+    public function setDeliveryMode(int $DeliveryMode): Order
+    {
+        $this->DeliveryMode = $DeliveryMode;
+        return $this;
+    }
+
+    public function setPvzCode(string $PvzCode): Order
+    {
+        $this->PvzCode = $PvzCode;
+        return $this;
+    }
+
+    public function setDeliveryVariant(string $DeliveryVariant): Order
+    {
+        $this->DeliveryVariant = $DeliveryVariant;
+        return $this;
+    }
+
+    public function setSellerName(string $SellerName): Order
+    {
+        $this->SellerName = $SellerName;
+        return $this;
+    }
 }

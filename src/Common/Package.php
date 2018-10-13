@@ -122,4 +122,46 @@ class Package
     {
         return ($this->SizeA * $this->SizeB * $this->SizeC) / 5000;
     }
+
+    public function setNumber(string $Number): Package
+    {
+        $this->Number = $Number;
+        return $this;
+    }
+
+    public function setBarCode(string $BarCode): Package
+    {
+        $this->BarCode = $BarCode;
+        return $this;
+    }
+
+    public function setWeight(int $Weight): Package
+    {
+        $this->Weight = $Weight;
+        return $this;
+    }
+
+    public function setSizeA(int $SizeA): Package
+    {
+        $this->SizeA = $SizeA;
+        return $this;
+    }
+
+    public function setSizeB(int $SizeB): Package
+    {
+        $this->SizeB = $SizeB;
+        return $this;
+    }
+
+    public function setSizeC(int $SizeC): Package
+    {
+        $this->SizeC = $SizeC;
+        return $this;
+    }
+
+    public function setItems($items)
+    {
+        $this->items = $items;
+        return $this;
+    }
 }

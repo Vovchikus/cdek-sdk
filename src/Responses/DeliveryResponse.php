@@ -65,7 +65,7 @@ class DeliveryResponse
         });
     }
 
-    public function getMessages(): array
+    public function getMessages()
     {
         return $this->messages;
     }

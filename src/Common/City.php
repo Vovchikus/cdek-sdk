@@ -60,4 +60,22 @@ class City
     {
         return $this->Name;
     }
+
+    public function setCode(int $Code): City
+    {
+        $this->Code = $Code;
+        return $this;
+    }
+
+    public function setPostCode(string $PostCode): City
+    {
+        $this->PostCode = $PostCode;
+        return $this;
+    }
+
+    public function setName(string $Name): City
+    {
+        $this->Name = $Name;
+        return $this;
+    }
 }

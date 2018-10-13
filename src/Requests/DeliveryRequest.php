@@ -67,4 +67,10 @@ class DeliveryRequest implements XmlRequest, ShouldAuthorize
     {
         return $this->number;
     }
+
+    public function setNumber(string $number): DeliveryRequest
+    {
+        $this->number = $number;
+        return $this;
+    }
 }
