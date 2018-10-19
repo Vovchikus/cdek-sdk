@@ -250,12 +250,11 @@ class Pvz
     public $WeightLimit;
 
     /**
-     * @JMS\PostDeserialize
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("PostalCode")
+     * @JMS\Type("string")
+     *
+     * @var  string
      */
-    public function postDeserialize()
-    {
-        foreach (self::BOOLEAN_FIELDS as $field) {
-            $this->$field = $this->$field === 'есть';
-        }
-    }
+    public $PostalCode;
 }

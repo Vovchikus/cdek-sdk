@@ -37,6 +37,9 @@ use Appwilio\CdekSDK\Serialization\NullableDateTimeHandler;
  * @method Responses\CalculationResponse  sendCalculationRequest(Requests\CalculationRequest $request)
  * @method Responses\StatusReportResponse sendStatusReportRequest(Requests\StatusReportRequest $request)
  * @method ResponseInterface              sendPrintReceiptsRequest(Requests\PrintReceiptsRequest $request)
+ * @method ResponseInterface              sendGetLabelsRequest(Requests\GetLabelsRequest $request)
+ * @method Responses\CallCourierResponse  sendCallCourierRequest(Requests\CallCourierRequest $request)
+ * @method Responses\PreAlertResponse     sendCreatePreAlert(Requests\PreAlertRequest $request)
  *
  * @package Appwilio\CdekSDK
  */
@@ -49,7 +52,10 @@ class CdekClient
             Requests\DeliveryRequest::class      => Responses\DeliveryResponse::class,
             Requests\InfoReportRequest::class    => Responses\InfoReportResponse::class,
             Requests\StatusReportRequest::class  => Responses\StatusReportResponse::class,
-            Requests\PrintReceiptsRequest::class => Responses\PrintReceiptsResponse::class
+            Requests\PrintReceiptsRequest::class => Responses\PrintReceiptsResponse::class,
+            Requests\CallCourierRequest::class => Responses\CallCourierResponse::class,
+            Requests\GetLabelsRequest::class => Responses\PrintReceiptsResponse::class,
+            Requests\PreAlertRequest::class => Responses\PreAlertResponse::class
         ],
         'json' => [
             Requests\CalculationRequest::class           => Responses\CalculationResponse::class,

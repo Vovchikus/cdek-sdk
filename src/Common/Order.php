@@ -199,7 +199,7 @@ class Order
      * @JMS\XmlList(entry="Call")
      * @JMS\Type("array<Appwilio\CdekSDK\Common\CallCourier>")
      *
-     * @var array|CallCourier[]
+     * @var array|Call[]
      */
     protected $courierCalls = [];
 
@@ -395,7 +395,7 @@ class Order
      */
     public $ReturnDispatchNumber;
 
-    public function callCourier(CallCourier $call)
+    public function callCourier(Call $call)
     {
         $this->courierCalls[] = $call;
     }
@@ -566,7 +566,7 @@ class Order
     }
 
     /**
-     * @return CallCourier[]|array
+     * @return Call[]|array
      */
     public function getCourierCalls()
     {
