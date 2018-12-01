@@ -21,4 +21,12 @@ class CallCourierResponse
      * @var Call
      */
     public $Call;
+
+    /**
+     * @JMS\SerializedName("CallCourier")
+     * @JMS\Type("Appwilio\CdekSDK\Common\Call")
+     *
+     * @var Call
+     */
+    public $CallCourier;
 }

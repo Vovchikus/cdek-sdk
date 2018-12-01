@@ -62,6 +62,6 @@ class PrintReceiptsRequest implements XmlRequest, ShouldAuthorize
      */
     public function getCopyCount()
     {
-        return 2;
+        return 1;
     }
 }

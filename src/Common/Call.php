@@ -24,7 +24,7 @@ class Call
      * @var Address
      */
     public $Address;
-    
+
     /**
      * @JMS\XmlAttribute
      * @JMS\SerializedName("Date")
@@ -122,6 +122,24 @@ class Call
      * @var integer
      */
     public $Number;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("Msg")
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    public $Msg;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("ErrorCode")
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    public $ErrorCode;
 
     public function getDate(): \DateTimeImmutable
     {

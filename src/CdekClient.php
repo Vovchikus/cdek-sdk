@@ -30,6 +30,7 @@ use Appwilio\CdekSDK\Serialization\NullableDateTimeHandler;
  * Class CdekClient
  *
  * @method Responses\DeleteResponse       sendDeleteRequest(Requests\DeleteRequest $request)
+ * @method Responses\UpdateResponse       sendUpdateRequest(Requests\UpdateRequest $request)
  * @method CityItem[]     sendCityListRequest(Requests\CityListRequest $request)
  * @method Responses\PvzListResponse      sendPvzListRequest(Requests\PvzListRequest $request)
  * @method Responses\DeliveryResponse     sendDeliveryRequest(Requests\DeliveryRequest $request)
@@ -46,19 +47,20 @@ use Appwilio\CdekSDK\Serialization\NullableDateTimeHandler;
 class CdekClient
 {
     private $maps = [
-        'xml'  => [
-            Requests\DeleteRequest::class        => Responses\DeleteResponse::class,
-            Requests\PvzListRequest::class       => Responses\PvzListResponse::class,
-            Requests\DeliveryRequest::class      => Responses\DeliveryResponse::class,
-            Requests\InfoReportRequest::class    => Responses\InfoReportResponse::class,
-            Requests\StatusReportRequest::class  => Responses\StatusReportResponse::class,
+        'xml' => [
+            Requests\DeleteRequest::class => Responses\DeleteResponse::class,
+            Requests\UpdateRequest::class => Responses\UpdateResponse::class,
+            Requests\PvzListRequest::class => Responses\PvzListResponse::class,
+            Requests\DeliveryRequest::class => Responses\DeliveryResponse::class,
+            Requests\InfoReportRequest::class => Responses\InfoReportResponse::class,
+            Requests\StatusReportRequest::class => Responses\StatusReportResponse::class,
             Requests\PrintReceiptsRequest::class => Responses\PrintReceiptsResponse::class,
             Requests\CallCourierRequest::class => Responses\CallCourierResponse::class,
             Requests\GetLabelsRequest::class => Responses\PrintReceiptsResponse::class,
             Requests\PreAlertRequest::class => Responses\PreAlertResponse::class
         ],
         'json' => [
-            Requests\CalculationRequest::class           => Responses\CalculationResponse::class,
+            Requests\CalculationRequest::class => Responses\CalculationResponse::class,
             Requests\CalculationAuthorizedRequest::class => Responses\CalculationResponse::class,
             Requests\CityListRequest::class => 'array<Appwilio\CdekSDK\Common\CityItem>', //todo
         ],
@@ -117,7 +119,7 @@ class CdekClient
 
     private function deserialize(Request $request, ResponseInterface $response)
     {
-        if (! $this->isTextResponse($response)) {
+        if (!$this->isTextResponse($response)) {
             return $response;
         }
 
@@ -125,7 +127,7 @@ class CdekClient
 
         foreach ($this->maps as $format => $map) {
             if (array_key_exists($class, $map)) {
-                return $this->serializer->deserialize((string) $response->getBody(), $map[$class], $format);
+                return $this->serializer->deserialize((string)$response->getBody(), $map[$class], $format);
             }
         }
 
@@ -134,7 +136,7 @@ class CdekClient
 
     private function getSecure(\DateTimeInterface $date): string
     {
-        return md5($date->format('Y-m-d')."&{$this->getPassword()}");
+        return md5($date->format('Y-m-d') . "&{$this->getPassword()}");
     }
 
     private function isTextResponse(ResponseInterface $response): bool
@@ -143,7 +145,7 @@ class CdekClient
             ? $response->getHeader('Content-Type')[0]
             : '';
 
-        return 0 === strpos($header, 'text/xml') || 0 === strpos($header, 'application/json');
+        return 0 === strpos($header, 'text/xml') || 0 === strpos($header, 'application/json') || 0 === strpos($header, 'application/xml');
     }
 
     private function extractOptions(Request $request): array
@@ -170,7 +172,7 @@ class CdekClient
 
         if ($request instanceof JsonRequest) {
             return [
-                'body'    => json_encode($request->getBody()),
+                'body' => json_encode($request->getBody()),
                 'headers' => [
                     'Content-Type' => 'application/json'
                 ],
