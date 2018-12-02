@@ -35,6 +35,15 @@ class Order
 
     /**
      * @JMS\XmlAttribute
+     * @JMS\SerializedName("ErrorCode")
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    public $ErrorCode;
+
+    /**
+     * @JMS\XmlAttribute
      * @JMS\SerializedName("Number")
      * @JMS\Type("string")
      *

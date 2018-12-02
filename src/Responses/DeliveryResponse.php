@@ -40,6 +40,13 @@ class DeliveryResponse
     protected $messages;
 
     /**
+     * @JMS\Exclude
+     *
+     * @var string
+     */
+    protected $errorCode;
+
+    /**
      * @return Order[]|array
      */
     public function getOrders()
@@ -50,10 +57,19 @@ class DeliveryResponse
     /**
      * @JMS\PostDeserialize
      */
+    protected function setErrorCode(): void
+    {
+        $order = reset($this->orders);
+        $this->errorCode = $order->ErrorCode;
+    }
+
+    /**
+     * @JMS\PostDeserialize
+     */
     public function filterOrders(): void
     {
         $messages = array_filter($this->orders, function (Order $order) {
-            return (bool) $order->getMessage();
+            return (bool)$order->getMessage();
         });
 
         foreach ($messages as $message) {
@@ -61,12 +77,17 @@ class DeliveryResponse
         }
 
         $this->orders = array_filter($this->orders, function (Order $order) {
-            return (bool) $order->getDispatchNumber();
+            return (bool)$order->getDispatchNumber();
         });
     }
 
     public function getMessages()
     {
         return $this->messages;
+    }
+
+    public function getErrorCode(): ?string
+    {
+        return $this->errorCode;
     }
 }
