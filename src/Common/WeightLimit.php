@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Appwilio\CdekSDK\Common;
 
+use JMS\Serializer\Annotation as JMS;
+
 class WeightLimit
 {
     use Fillable;

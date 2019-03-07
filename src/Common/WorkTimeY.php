@@ -15,16 +15,25 @@ namespace Appwilio\CdekSDK\Common;
 
 use JMS\Serializer\Annotation as JMS;
 
-class OfficeImage
+class WorkTimeY
 {
     use Fillable;
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("url")
+     * @JMS\SerializedName("day")
+     * @JMS\Type("int")
+     *
+     * @var int
+     */
+    public $day;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("periods")
      * @JMS\Type("string")
      *
      * @var string
      */
-    public $url;
+    public $periods;
 }

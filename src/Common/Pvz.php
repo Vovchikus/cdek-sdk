@@ -241,9 +241,8 @@ class Pvz
     public $WorkTime;
 
     /**
-     * @JMS\XmlAttribute
-     * @JMS\SerializedName("WeightLimit")
-     * @JMS\Type("Appwilio\CdekSDK\Common\WeightLimit")
+     * @JMS\XmlList(entry="WeightLimit", inline=true)
+     * @JMS\Type("array<Appwilio\CdekSDK\Common\WeightLimit>")
      *
      * @var  WeightLimit
      */
@@ -257,4 +256,46 @@ class Pvz
      * @var  string
      */
     public $PostalCode;
+
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("ownerCode")
+     * @JMS\Type("string")
+     *
+     * @var  string
+     */
+    public $ownerCode;
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("qqId")
+     * @JMS\Type("string")
+     *
+     * @var  string
+     */
+    public $qqId;
+
+    /**
+     * @JMS\XmlList(entry="OfficeImage", inline=true)
+     * @JMS\Type("array<Appwilio\CdekSDK\Common\OfficeImage>")
+     *
+     * @var  OfficeImage[]
+     */
+    public $officeImage;
+
+    /**
+     * @JMS\XmlList(entry="WorkTimeY", inline=true)
+     * @JMS\Type("array<Appwilio\CdekSDK\Common\WorkTimeY>")
+     *
+     * @var  WorkTimeY[]
+     */
+    public $workTimeY;
+
+    /**
+     * @JMS\XmlList(entry="PhoneDetail", inline=true)
+     * @JMS\Type("array<Appwilio\CdekSDK\Common\PhoneDetail>")
+     *
+     * @var  PhoneDetail
+     */
+    public $phoneDetail;
 }

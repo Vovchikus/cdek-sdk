@@ -95,7 +95,6 @@ class CdekClient
     {
         if ($request instanceof ShouldAuthorize) {
             $date = new \DateTimeImmutable();
-
             $request->date($date)->credentials($this->getAccount(), $this->getSecure($date));
         }
 

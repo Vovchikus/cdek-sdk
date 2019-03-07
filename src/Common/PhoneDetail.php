@@ -15,16 +15,16 @@ namespace Appwilio\CdekSDK\Common;
 
 use JMS\Serializer\Annotation as JMS;
 
-class OfficeImage
+class PhoneDetail
 {
     use Fillable;
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("url")
+     * @JMS\SerializedName("number")
      * @JMS\Type("string")
      *
      * @var string
      */
-    public $url;
+    public $number;
 }
