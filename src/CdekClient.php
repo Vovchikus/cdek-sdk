@@ -83,9 +83,6 @@ class CdekClient
     public function __construct(bool $isDebugMode, array $requestOptions = [])
     {
         $this->isDebugMode = $isDebugMode;
-
-        $this->http = new GuzzleClient($requestOptions);
-
         $this->serializer = SerializerBuilder::create()->configureHandlers(function (HandlerRegistry $registry) {
             $registry->registerSubscribingHandler(new NullableDateTimeHandler());
         })->build();
@@ -93,6 +90,7 @@ class CdekClient
 
     public function sendRequest(Request $request)
     {
+        $this->http = new GuzzleClient();
         if ($request instanceof ShouldAuthorize) {
             $date = new \DateTimeImmutable();
             $request->date($date)->credentials($this->getAccount(), $this->getSecure($date));
@@ -105,6 +103,20 @@ class CdekClient
         );
 
         return $this->deserialize($request, $response);
+    }
+
+    public function sendAsync(Request $request, GuzzleClient $client)
+    {
+        if ($request instanceof ShouldAuthorize) {
+            $date = new \DateTimeImmutable();
+            $request->date($date)
+                ->credentials($this->getAccount(), $this->getSecure($date));
+        }
+
+        return $client->requestAsync($request->getMethod(), $request->getAddress(), $this->extractOptions($request))
+            ->then(function(ResponseInterface $res) use ($request) {
+                return $this->deserialize($request, $res);
+            });
     }
 
     public function __call($name, $arguments)
