@@ -125,6 +125,15 @@ class Call
 
     /**
      * @JMS\XmlAttribute
+     * @JMS\SerializedName("Weight")
+     * @JMS\Type("integer")
+     *
+     * @var integer
+     */
+    public $Weight;
+
+    /**
+     * @JMS\XmlAttribute
      * @JMS\SerializedName("Msg")
      * @JMS\Type("string")
      *
@@ -223,6 +232,17 @@ class Call
     public function setSenderName(string $SenderName): Call
     {
         $this->SenderName = $SenderName;
+        return $this;
+    }
+
+    public function getWeight(): int
+    {
+        return $this->Weight;
+    }
+
+    public function setWeight(int $Weight): Call
+    {
+        $this->Weight = $Weight;
         return $this;
     }
 }
