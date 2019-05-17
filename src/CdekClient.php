@@ -47,7 +47,6 @@ use Appwilio\CdekSDK\Serialization\NullableDateTimeHandler;
  */
 class CdekClient
 {
-
     /**
      * @var array
      */
