@@ -13,7 +13,7 @@ class CityListRequest implements ParamRequest
 
     protected const METHOD = 'GET';
 
-    protected const ADDRESS = 'https://integration.cdek.ru/v1/location/cities/json';
+    protected const ADDRESS = 'v1/location/cities/json';
 
     /** @var int */
     private $page;

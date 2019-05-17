@@ -20,7 +20,7 @@ class CallCourierRequest implements XmlRequest, ShouldAuthorize
     use Authorized, Fillable, RequestCore;
 
     protected const METHOD = 'POST';
-    protected const ADDRESS = 'https://integration.cdek.ru/call_courier.php';
+    protected const ADDRESS = 'call_courier.php';
 
     /**
      * @JMS\XmlAttribute

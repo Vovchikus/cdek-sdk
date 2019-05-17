@@ -43,7 +43,7 @@ class CalculationRequest implements JsonRequest
     public const MODE_WAREHOUSE_WAREHOUSE = 4;
 
     protected const METHOD  = 'POST';
-    protected const ADDRESS = 'https://api.cdek.ru/calculator/calculate_price_by_json.php';
+    protected const ADDRESS = 'calculator/calculate_price_by_json.php';
 
     protected $senderCityId;
     protected $senderCityPostCode;

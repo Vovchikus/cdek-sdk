@@ -11,5 +11,5 @@ use JMS\Serializer\Annotation as JMS;
  */
 class UpdateRequest extends DeliveryRequest
 {
-    protected const ADDRESS = 'https://integration.cdek.ru/update';
+    protected const ADDRESS = 'update';
 }

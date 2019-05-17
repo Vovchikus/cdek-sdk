@@ -25,7 +25,7 @@ class GetLabelsRequest implements XmlRequest, ShouldAuthorize
     use Authorized, Fillable, OrdersAware, RequestCore;
 
     protected const METHOD = 'POST';
-    protected const ADDRESS = 'https://integration.cdek.ru/ordersPackagesPrint';
+    protected const ADDRESS = 'ordersPackagesPrint';
 
     public function addOrder(Order $order)
     {

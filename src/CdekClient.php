@@ -9,11 +9,12 @@
  * file that was distributed with this source code.
  */
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Appwilio\CdekSDK;
 
 use Appwilio\CdekSDK\Common\CityItem;
+use Appwilio\CdekSDK\Requests\CalculationAuthorizedRequest;
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\Handler\HandlerRegistry;
@@ -46,6 +47,12 @@ use Appwilio\CdekSDK\Serialization\NullableDateTimeHandler;
  */
 class CdekClient
 {
+
+    /**
+     * @var array
+     */
+    private $urls;
+
     private $maps = [
         'xml' => [
             Requests\DeleteRequest::class => Responses\DeleteResponse::class,
@@ -62,7 +69,8 @@ class CdekClient
         'json' => [
             Requests\CalculationRequest::class => Responses\CalculationResponse::class,
             Requests\CalculationAuthorizedRequest::class => Responses\CalculationResponse::class,
-            Requests\CityListRequest::class => 'array<Appwilio\CdekSDK\Common\CityItem>', //todo
+            Requests\CityListRequest::class => 'array<Appwilio\CdekSDK\Common\CityItem>',
+            //todo
         ],
     ];
 
@@ -80,10 +88,11 @@ class CdekClient
 
     private $isDebugMode;
 
-    public function __construct(bool $isDebugMode, array $requestOptions = [])
+    public function __construct(array $urls, bool $isDebugMode, array $requestOptions = [])
     {
+        $this->urls = $urls;
         $this->isDebugMode = $isDebugMode;
-        $this->serializer = SerializerBuilder::create()->configureHandlers(function (HandlerRegistry $registry) {
+        $this->serializer = SerializerBuilder::create()->configureHandlers(function(HandlerRegistry $registry) {
             $registry->registerSubscribingHandler(new NullableDateTimeHandler());
         })->build();
     }
@@ -96,11 +105,11 @@ class CdekClient
             $request->date($date)->credentials($this->getAccount(), $this->getSecure($date));
         }
 
-        $response = $this->http->request(
-            $request->getMethod(),
-            $request->getAddress(),
-            $this->extractOptions($request)
-        );
+        $response = $this->http->request($request->getMethod(),
+            $request instanceof CalculationAuthorizedRequest
+                ? $this->urls['calculator']. $request->getAddress()
+                : $this->urls['main']. $request->getAddress(),
+            $this->extractOptions($request));
 
         return $this->deserialize($request, $response);
     }
@@ -109,12 +118,14 @@ class CdekClient
     {
         if ($request instanceof ShouldAuthorize) {
             $date = new \DateTimeImmutable();
-            $request->date($date)
-                ->credentials($this->getAccount(), $this->getSecure($date));
+            $request->date($date)->credentials($this->getAccount(), $this->getSecure($date));
         }
 
-        return $client->requestAsync($request->getMethod(), $request->getAddress(), $this->extractOptions($request))
-            ->then(function(ResponseInterface $res) use ($request) {
+        return $client->requestAsync($request->getMethod(),
+            $request instanceof CalculationAuthorizedRequest
+                ? $this->urls['calculator']. $request->getAddress()
+                : $this->urls['main']. $request->getAddress(),
+            $this->extractOptions($request))->then(function(ResponseInterface $res) use ($request) {
                 return $this->deserialize($request, $res);
             });
     }
@@ -152,11 +163,11 @@ class CdekClient
 
     private function isTextResponse(ResponseInterface $response): bool
     {
-        $header = $response->hasHeader('Content-Type')
-            ? $response->getHeader('Content-Type')[0]
-            : '';
+        $header = $response->hasHeader('Content-Type') ? $response->getHeader('Content-Type')[0] : '';
 
-        return 0 === strpos($header, 'text/xml') || 0 === strpos($header, 'application/json') || 0 === strpos($header, 'application/xml');
+        return 0 === strpos($header, 'text/xml') || 0 === strpos($header, 'application/json')
+            || 0 === strpos($header,
+                'application/xml');
     }
 
     private function extractOptions(Request $request): array
